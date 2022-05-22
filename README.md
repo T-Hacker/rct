@@ -1,2 +1,4 @@
-# rct
-Transaction processing sample application in Rust.
+# Transaction Processing Test
+This is a sample application that simulates a transactional system. It tries to maximize the hardware resources usage by distributing the transactions by multiple workers. The transactions are distributed by client id and each worker keeps the state of the clients that are assigned to them. This way, there are no locking requirements to access (and mutate) the client state.
+
+**Note:** The author assumes that storing transactions, reading and writing the sate of a client, are expensive operations (e.i. external database), which may not be the case for this test application.
