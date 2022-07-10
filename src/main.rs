@@ -138,7 +138,7 @@ mod tests {
         let client = clients.get(&1).unwrap();
 
         assert_eq!(client.get_total(), Decimal::new(1, 0)); // We should have 1 credit left.
-        assert_eq!(client.is_locked(), false); // The account should not be locked.
+        assert!(!client.is_locked()); // The account should not be locked.
     }
 
     /// Test if the system is handles invalid deposits.
@@ -165,7 +165,7 @@ mod tests {
         let client = clients.get(&1).unwrap();
 
         assert_eq!(client.get_total(), Decimal::new(0, 0)); // We should still have zero credits.
-        assert_eq!(client.is_locked(), false); // The account should not be locked.
+        assert!(!client.is_locked()); // The account should not be locked.
     }
 
     /// Test how the system handles an invalid withdrawal.
@@ -202,7 +202,7 @@ mod tests {
         let client = clients.get(&1).unwrap();
 
         assert_eq!(client.get_total(), Decimal::new(10, 0)); // We should have the initial amount.
-        assert_eq!(client.is_locked(), false); // The account should not be locked.
+        assert!(!client.is_locked()); // The account should not be locked.
     }
 
     /// Test a scenario where a dispute was resolved.
@@ -249,7 +249,7 @@ mod tests {
         let client = clients.get(&1).unwrap();
 
         assert_eq!(client.get_total(), Decimal::new(15, 0)); // We should have all deposited credits.
-        assert_eq!(client.is_locked(), false); // The account should not be locked.
+        assert!(!client.is_locked()); // The account should not be locked.
     }
 
     /// Test a scenario where the client will be locked and all subsequent transactions ignored.
@@ -306,6 +306,6 @@ mod tests {
         let client = clients.get(&1).unwrap();
 
         assert_eq!(client.get_total(), Decimal::new(5, 0));
-        assert_eq!(client.is_locked(), true);
+        assert!(client.is_locked());
     }
 }
